@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* * {
+    @apply border border-[red];
+  } */
+  body {
+    @apply font-montserrat font-economica font-comingSoon overflow-x-hidden;
+  }
+  .container {
+    @apply max-w-[1600px] w-full px-4 mx-auto;
+  }
+  h1 {
+    @apply text-[70px];
+  }
+  h2 {
+    @apply text-[33px];
+  }
+  h3 {
+    @apply text-[24px];
+  }
+  h4 {
+    @apply text-[16px];
+  }
+  h5 {
+    @apply text-[12px];
+  }
+  h6 {
+    @apply text-[10px];
+  }
+  p {
+    @apply text-[16px];
+  }
+}
+
+@layer components {
+  /* HEADER */
+
+  .header {
+    @apply bg-transparent;
+  }
+  .header__nav li a {
+    @apply text-white font-semibold;
+  }
+
+  .header__nav.open {
+    @apply right-0 z-50 overflow-y-hidden;
+  }
+  .toggle__menu {
+    @apply flex flex-col gap-1 tracking-tight z-50;
+  }
+  .toggle__menu span {
+    @apply content-[*] bg-white w-10 h-1 rounded-lg duration-700 ease-in-out;
+  }
+  .toggle__menu span:last-child {
+    @apply content-[*] bg-white w-10 h-1 rounded-lg duration-700 ease-in-out;
+  }
+
+  /* HEADER SPAN EKIS*/
+
+  .toggle__menu.open span:first-child {
+    @apply origin-bottom-right rotate-[35deg] w-10 translate-x-[-0.3rem] translate-y-[1.2rem] transition-all opacity-[100];
+  }
+  .toggle__menu.open span:nth-child(2) {
+    @apply transition-all opacity-0;
+  }
+  .toggle__menu.open span:last-child {
+    @apply origin-top-right rotate-[-35deg] w-10 translate-x-[-0.3rem] translate-y-[-1.2rem] transition-all opacity-[100];
+  }
+
+  .header__nav.open {
+    @apply right-0 z-50 overflow-y-hidden;
+  }
+  .transparent {
+    @apply hidden;
+  }
+  .transparent.open {
+    @apply block fixed top-[6.3rem] left-0 h-screen w-full
+    backdrop-blur-sm duration-700 overflow-y-hidden;
+  }
+  .toggle__menu {
+    @apply flex flex-col gap-1 z-50 md:hidden lg:hidden;
+  }
+  .toggle__menu span {
+    @apply content-[*] bg-primary w-10 h-1 rounded-lg duration-700 ease-in-out;
+  }
+  .toggle__menu span:last-child {
+    @apply content-[*] bg-primary w-7 h-1 rounded-lg duration-700 ease-in-out;
+  }
+  .toggle__menu.open span {
+    @apply w-7;
+  }
+  .toggle__menu.open span:last-child {
+    @apply w-10;
+  }
+
+  /* TOP */
+  .top__wrapper {
+    @apply flex flex-row justify-center items-center;
+  }
+
+  .step {
+    @apply text-center flex justify-center items-center;
+  }
+  .step img {
+    @apply w-[10rem] h-[120px] flex;
+  }
+  .step li i {
+    @apply text-accent font-bold text-2xl;
+  }
+  .step li {
+    @apply h-full;
+  }
+  .follow {
+    @apply flex flex-col gap-5 h-full;
+  }
+
+  /* RAMEN MENU */
+
+  .food {
+    @apply flex flex-col-reverse lg:flex-row lg:place-items-start place-items-center border lg:border-gray-500 lg:border-none p-5 mb-5 lg:mb-0;
+  }
+  .food--details {
+    @apply w-[20rem] text-center lg:text-start;
+  }
+  .food h2 {
+    @apply font-economica text-[60px] font-bold text-dark;
+  }
+  .food h4 {
+    @apply font-montserrat text-[30px] font-bold text-accent;
+  }
+  .food li p {
+    @apply font-economica text-[25px] font-bold text-white;
+  }
+  .food h3 {
+    @apply font-economica text-[35px] font-bold text-dark;
+  }
+  .img img {
+    @apply w-full h-[15rem];
+  }
+  .name {
+    @apply flex lg:flex-col justify-between items-center lg:items-start;
+  }
+
+  .img {
+    @apply grid place-items-center;
+  }
+
+  /* CTA */
+
+  .cta__wrapper {
+    @apply flex flex-col text-center;
+  }
+  .ctaImg img {
+    @apply w-full h-full;
+  }
+
+  /* FOOTER */
+  .social {
+    @apply flex gap-6;
+  }
+  .social li i {
+    @apply text-secondary text-[27px];
+  }
+
+  /* ------------------------------------FOR MENU----------------------------------- */
+
+  .toppingsFood {
+    @apply w-[30rem] mb-5 lg:mb-0;
+  }
+
+  .sidesFood {
+    @apply w-[30rem] mb-5 lg:mb-0;
+  }
+
+  .foodSelect p {
+    @apply text-[25px] lg:text-[45px] font-bold font-economica text-dark cursor-pointer;
+  }
+
+  .bottleFoods {
+    @apply mb-5;
+  }
+  .draftFoods {
+    @apply mb-5;
+  }
+  .drink--details {
+    @apply mr-5;
+  }
+
+  /* --------------------------------FOR TABS-------------------------------------- */
+
+  .foodSelect p {
+    @apply cursor-pointer;
+  }
+  .foodSelect p.active {
+    @apply border-b-4 border-secondary pb-1;
+  }
+  .foodTabs.active {
+    @apply gap-10 lg:gap-0 grid lg:grid-cols-2;
+  }
+  .foodTabs {
+    @apply hidden lg:hidden;
+  }
+
+  /* .toppings__list{
+    @apply flex;
+  }
+  .toppings__names li{
+    @apply w-[30rem];
+  } */
+
+  /* REPEATABLE PATTERNS */
+
+  /* BUTTONS */
+
+  .btn {
+    @apply py-2 px-4 bg-transparent border-transparent rounded-md font-bold text-[17px];
+  }
+  .btn.bg-secondaryy {
+    @apply bg-secondary border-2 border-secondary text-white hover:bg-dark;
+  }
+
+  .btn.bg-darkk {
+    @apply bg-dark border-2 border-dark text-white hover:bg-secondary;
+  }
+
+  .btn.readmore {
+    @apply border border-primary hover:text-primary hover:bg-white;
+  }
+}

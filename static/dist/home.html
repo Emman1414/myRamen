@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Michi Ramen</title>
+    <link rel="stylesheet" href="./output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    
+    <div class="bg-menu lg:h-screen h-[100vh] relative">
+      <!-- Header -->
+      <header class="header py-10 font-montserrat">
+        <div class="container">
+          <div
+            class="header__wrapper flex flex-row justify-between items-center"
+          >
+            <div class="header__logo">
+              <a href="./home.html"
+                ><img
+                  class="w-[5rem] lg:w-full"
+                  src="../img/michiRamenLogo.png"
+                  alt=""
+              /></a>
+            </div>
+            <ul
+              class="header__nav font-semibold flex flex-col justify-center items-center bg-black/100 lg:bg-transparent p-0 lg:flex lg:flex-row gap-10 items-center text-[15px] lg:text-[15px] lg:flex lg:flex-row lg:gap-[6rem] lg:items-center fixed duration-700 top-0 right-[-100%] h-[100%] lg:static lg:w-auto w-full"
+            >
+              <li><a href="#">MENU</a></li>
+              <li><a href="#">LOCATIONS</a></li>
+              <li><a href="#">ABOUT</a></li>
+              <li><a href="#">BLOG</a></li>
+              <a
+                href="#"
+                class="btn bg-secondaryy text-[clamp(40px, 5vw, 100px)]"
+                >ORDER ONLINE</a
+              >
+            </ul>
+            <div
+              class="toggle__menu transition-all rounded-full hover:border-8 hover:border-gray-400 hover:bg-gray-400 cursor-pointer"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- HERO? BANNER  -->
+      <section class="hero font-montserrat">
+        <div class="container">
+          <div class="hero__wrapper relative">
+            <div
+              class="title justify-center items-center mt-[100px] text-center leading-[1]"
+            >
+              <h1 class="text-[clamp(40px,5vw,100px)] font-bold text-white">
+                MICHI RAMEN
+              </h1>
+              <h2 class="text-xl text-white font-semibold">
+                MICHI RAMEN • TUESDAY - SUNDAY 11AM-MIDNIGHT • HAPPY HOUR
+                9PM-11PM
+              </h2>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- IMAGE -->
+      <div class="lastImg absolute bottom-0 left-[50%] translate-x-[-50%]">
+        <img src="../img/hero-image-2.png" alt="" />
+      </div>
+    </div>
+
+    <!-- HERO BOTTOM -->
+
+    <section class="heroBtm font-economica py-10 bg-primary">
+      <div class="container">
+        <div
+          class="heroBtm__wrapper flex flex-col justify-center items-center text-center"
+        >
+          <div class="title flex justify-center items-center py-5">
+            <h2
+              class="text-[clamp(35px,5vw,55px)] font-bold text-accent font-montserrat"
+            >
+              HOW TO ORDER AT MICHI
+            </h2>
+          </div>
+          <ul class="step flex justify-center items-center gap-5 py-10">
+            <!-- 1 -->
+            <div class="follow place-items-center">
+              <img src="../img/ramen-step-1.png" alt="" />
+              <h2>PICK YOUR RAMEN</h2>
+            </div>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
+            <!-- 2 -->
+            <div class="follow place-items-center">
+              <img src="../img/ramen-step-2.png" alt="" />
+              <h2>PICK YOUR BROTH</h2>
+            </div>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
+            <!-- 3 -->
+            <div class="follow place-items-center">
+              <img src="../img/ramen-step-3.png" alt="" />
+              <h2>ADD TOPPINGS</h2>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+
+    <section class="menu py-[6rem] bg-list bg-repeat">
+      <div class="container">
+        <div class="menu__wrapper flex flex-col justify-center items-center">
+          <div
+            class="font-montserrat title flex justify-center py-5 font-semibold text-white items-center"
+          >
+            <h1 class="lg:text-[70px] text-[50px]">RAMEN MENU</h1>
+          </div>
+          <ul class="foodList lg:grid lg:grid-cols-[_2fr_2fr] gap-[5rem]">
+            <div class="food">
+              <div class="food--details">
+                <div class="name">
+                  <h2>MICHI</h2>
+                  <h4>$8.50</h4>
+                </div>
+                <ul>
+                  <li>
+                    <p>Chashu Slices</p>
+                  </li>
+                  <li>
+                    <p>Roasted Nori</p>
+                  </li>
+                  <li>
+                    <p>Mayu Oil</p>
+                  </li>
+                  <li>
+                    <p>Woodear Mushrooms</p>
+                  </li>
+                  <li>
+                    <p>Green Mushrooms</p>
+                  </li>
+                </ul>
+                <h3>SHOYOU TONKOTSU</h3>
+              </div>
+              <div class="img">
+                <img src="../img/Michi.png" alt="" />
+              </div>
+            </div>
+            <div class="food">
+              <div class="food--details">
+                <div class="name">
+                  <h2>SAPPORO</h2>
+                  <h4>$9.50</h4>
+                </div>
+                <ul>
+                  <li>
+                    <p>Chashu Slices</p>
+                  </li>
+                  <li>
+                    <p>Bean Sprouts</p>
+                  </li>
+                  <li>
+                    <p>Corn/Butter</p>
+                  </li>
+                  <li>
+                    <p>Woodear Mushrooms</p>
+                  </li>
+                  <li>
+                    <p>Green Onions</p>
+                  </li>
+                </ul>
+                <h3>MISO TONKOTSU</h3>
+              </div>
+              <div class="img">
+                <img src="../img/Saporo.png" alt="" />
+              </div>
+            </div>
+            <div class="food">
+              <div class="food--details">
+                <div class="name">
+                  <h2>VEGIE</h2>
+                  <h4>$7.50</h4>
+                </div>
+                <ul>
+                  <li>
+                    <p>Chivas</p>
+                  </li>
+                  <li>
+                    <p>Sprouts and Cabbage</p>
+                  </li>
+                  <li>
+                    <p>Woodear mushrooms</p>
+                  </li>
+                  <li>
+                    <p>Green onions</p>
+                  </li>
+                </ul>
+                <h3>SHOYOU SHIITAKE</h3>
+              </div>
+              <div class="img">
+                <img src="../img/Vegie.png" alt="" />
+              </div>
+            </div>
+            <div class="food">
+              <div class="food--details">
+                <div class="name">
+                  <h2>MEAT LOVERS</h2>
+                  <h4>$10.50</h4>
+                </div>
+                <ul>
+                  <li>
+                    <p>Chashu Slices</p>
+                  </li>
+                  <li>
+                    <p>Mayu Oil</p>
+                  </li>
+                  <li>
+                    <p>Woodear Mushrooms</p>
+                  </li>
+                  <li>
+                    <p>Green Onions</p>
+                  </li>
+                </ul>
+                <h3>SHOYOU TONKOTSU</h3>
+              </div>
+              <div class="img">
+                <img src="../img/Meat Lover.png" alt="" />
+              </div>
+            </div>
+            <div class="food">
+              <div class="food--details">
+                <div class="name">
+                  <h2>DIPPING</h2>
+                  <h4>$11.50</h4>
+                </div>
+                <ul>
+                  <li>
+                    <p>Chashu Slices</p>
+                  </li>
+                  <li>
+                    <p>Shredded Nori</p>
+                  </li>
+                  <li>
+                    <p>Woodear Mushrooms</p>
+                  </li>
+                  <li>
+                    <p>Green Onions</p>
+                  </li>
+                  <li>
+                    <p>Ground Chasu</p>
+                  </li>
+                  <li>
+                    <p>Fresh Garlic</p>
+                  </li>
+                  <li>
+                    <p>Fried Onions</p>
+                  </li>
+                  <li>
+                    <p>Mayu Oil</p>
+                  </li>
+                </ul>
+                <h3>FISH TONKOTSU</h3>
+              </div>
+              <div class="img">
+                <img src="../img/dipping.png" alt="" />
+              </div>
+            </div>
+            <div class="food">
+              <div class="food--details">
+                <div class="name">
+                  <h2>TEXAS</h2>
+                  <h4>$13.50</h4>
+                </div>
+                <ul>
+                  <li>
+                    <p>Smoked BBQ pork ribs</p>
+                  </li>
+                  <li>
+                    <p>Vinegar Slaw</p>
+                  </li>
+                  <li>
+                    <p>Red Onions</p>
+                  </li>
+                  <li>
+                    <p>Mayu Oil</p>
+                  </li>
+                  <li>
+                    <p>Texas Roast</p>
+                  </li>
+                  <li>
+                    <p>Jalepenos</p>
+                  </li>
+                  <li>
+                    <p>Pickle Spear</p>
+                  </li>
+                  <li>
+                    <p>Spicy BBQ Sauce</p>
+                  </li>
+                </ul>
+                <h3>TOMATO TONKOTSU</h3>
+              </div>
+              <div class="img">
+                <img src="../img/texas.png" alt="" />
+              </div>
+            </div>
+            <div class="food">
+              <div class="food--details">
+                <div class="name">
+                  <h2>JUNGLE</h2>
+                  <h4>$9.50</h4>
+                </div>
+                <ul>
+                  <li>
+                    <p>Contains Shellfish</p>
+                  </li>
+                  <li>
+                    <p>Chashu Slices</p>
+                  </li>
+                  <li>
+                    <p>Bean Sprouts</p>
+                  </li>
+                  <li>
+                    <p>Thai Chilies</p>
+                  </li>
+                  <li>
+                    <p>Woodear Mushrooms</p>
+                  </li>
+                  <li>
+                    <p>Green Onions</p>
+                  </li>
+                  <li>
+                    <p>Toasted LemonGrass</p>
+                  </li>
+                  <li>
+                    <p>Lime Wedge</p>
+                  </li>
+                  <li>
+                    <p>Cliantro</p>
+                  </li>
+                </ul>
+                <h3>LEMONGRASS TONKOTSU</h3>
+              </div>
+              <div class="img">
+                <img src="../img/jungle.png" alt="" />
+              </div>
+            </div>
+            <div class="food">
+              <div class="food--details">
+                <div class="name">
+                  <h2>SPECIAL</h2>
+                  <h4>$13.50</h4>
+                </div>
+                <ul>
+                  <li>
+                    <p>Smoke BBQ pork ribs</p>
+                  </li>
+                  <li>
+                    <p>Vinegar Slaw</p>
+                  </li>
+                  <li>
+                    <p>Red Onions</p>
+                  </li>
+                  <li>
+                    <p>Mayo Oil</p>
+                  </li>
+                  <li>
+                    <p>Texas Toast</p>
+                  </li>
+                  <li>
+                    <p>Jalapenos</p>
+                  </li>
+                  <li>
+                    <p>Pickle Spear</p>
+                  </li>
+                  <li>
+                    <p>Spicy BBQ Sauce</p>
+                  </li>
+                </ul>
+                <h3>TOMATO TONKOTSU</h3>
+              </div>
+              <div class="img">
+                <img src="../img/special.png" alt="" />
+              </div>
+            </div>
+          </ul>
+          <ul class="mt-10">
+            <a
+              href="#"
+              class="btn bg-darkk rounded-sm text-[20px] font-montserrat"
+              >VIEW OUR ALL MENU</a
+            >
+          </ul>
+        </div>
+      </div>
+      <div class="menuImage">
+        <img
+          class="w-screen translate-y-[7rem]"
+          src="../img/image (6).png"
+          alt=""
+        />
+      </div>
+    </section>
+
+    <!-- CTA -->
+
+    <section class="cta lg:py-[6rem] py-[3rem] bg-primary font-montserrat">
+      <div class="container">
+        <div
+          class="cta__wrapper flex flex-col justify-center items-center text-center"
+        >
+          <h2 class="text-[35px] lg:text-[50px] font-bold text-accent">
+            JOIN US FOR HAPPY HOUR
+          </h2>
+          <h4 class="text-[10px] lg:text-[25px] font-bold text-secondary">
+            3-6PM / 9-11PM • $1 OFF ALL BEER | WEDNESDAYS 5-11PM • $2 SAKE
+            CARAFFES
+          </h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA IMAGE -->
+
+    <section class="ctaImg">
+      <ul class="ctaImg flex w-full">
+        <li>
+          <img src="../img/cta1.png" alt="" />
+        </li>
+        <li>
+          <img src="../img/cta2.png" alt="" />
+        </li>
+        <li>
+          <img src="../img/cta3.png" alt="" />
+        </li>
+      </ul>
+    </section>
+
+    <!-- FOOTER -->
+
+    <section class="footer py-[5rem] bg-dark font-montserrat lg:px-[20rem]">
+      <div class="container">
+        <div
+          class="footer__wrapper flex flex-col lg:flex-row lg:justify-between items-center text-center gap-5"
+        >
+          <ul class="social">
+            <li>
+              <a href="#"><i class="fa-brands fa-yelp"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </li>
+          </ul>
+          <ul class="w-[20rem] lg:w-[70%]">
+            <li>
+              <h2
+                class="text-white font-bold text-center text-[10px] lg:text-[20px]"
+              >
+                (512) 386-1908-1908 • 6519 N. Lamar, Austin TX 78752
+              </h2>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="#" class="btn bg-secondaryy text-sm">ORDER ONLINE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <script src="./js/toggleMenu.js"></script>
+  </body>
+</html>
