@@ -184,17 +184,21 @@
           <div class="toppingsFood">
             <div class="flex justify-between">
               <div class="toppings--details">
+                
                 <p class="uppercase text-2xl font-bold"><?php the_title()?></p>
-                <div class="text-sm font-semibold"><?php the_excerpt()?></div>
+                <p class="text-sm font-semibold"><?php the_excerpt()?></p>
+
               </div>
+
               <div class="toppings--Price">
-                <div class="text-2xl font-bold"><?php the_field('menu_price')?></div>
+                <p class="text-2xl font-bold"><?php the_field('menu_price')?></p>
               </div>
+
             </div>
           </div>
 
 
-        <?php
+                 <?php
                 endwhile;
                 else :
                   echo "No Available Content Yet";
@@ -205,6 +209,7 @@
         
         
         </div>
+        
       </div>
       <div style="background-repeart:no-repeat; background-size:cover;"  class="menuImage">
         <img
@@ -272,7 +277,7 @@
       <div style="background-repeart:no-repeat; background-size:cover;"  class="menuImage">
         <img
           class="w-screen translate-y-[7rem]"
-          src="<?php the_field('drinkssss')?>"
+          src="<?php the_field('drinkimage')?>"
           alt=""
         />
       </div>
@@ -280,7 +285,7 @@
 
     <!-- DRINKS -->
 
-    <section class="drinks bg-primary font-montserrat">
+    <!-- <section class="drinks bg-primary font-montserrat">
       <div class="container place-items-center">
         <div
           class="title flex flex-col text-center items-center justify-center"
@@ -294,15 +299,36 @@
             CARAFFES
           </p>
         </div>
+
         <ul class="foodSelect flex gap-10 py-2">
-          <p class="drink__list active" id="tabs-1">BEER</p>
-          <p class="drink__list" id="tabs-2">SAKE</p>
-          <p class="drink__list" id="tabs-3">WINE</p>
-          <p class="drink__list" id="tabs-4">TEA</p>
+
+              <?php
+              if(have_rows('all_drinks')) :
+                while(have_rows('all_drinks')): the_row();
+                ?>
+
+
+          <p class="<?php echo get_sub_field('drink_status')?>" id="<? echo get_sub_field('drink_id')?>">
+            <?php echo get_sub_field('drink_text')?></p>
+
+              <?php
+          endwhile;
+        else :
+            echo "No content yet.";
+        endif;
+        ?>
+
         </ul>
         <div class="drinks__wrapper py-[3rem]">
-          <!-- CONTENTS -->
-          <div class="foodTabs active" id="tabs-1-content">
+
+
+        <?php
+              if(have_rows('food_contents')) :
+                while(have_rows('food_contents')): the_row();
+                ?>
+
+         
+          <div class="<?php echo get_sub_field('food_status')?>" id="<?php echo get_sub_field('food_id')?>">
             <div class="draft gap-2 px-5">
               <div class="drafts--categ text-center">
                 <h2 class="text-[30px] text-dark font-bold">DRAFT</h2>
@@ -502,8 +528,62 @@
               </div>
             </div>
           </div>
+        <?php
+          endwhile;
+        else :
+            echo "No content yet.";
+        endif;
+        ?>
 
-          <div class="foodTabs" id="tabs-2-content">
+        </div>
+      </div>
+    </section> -->
+
+     <section class="drinks bg-primary font-montserrat">
+      <div class="container place-items-center">
+        <div
+          class="title flex flex-col text-center items-center justify-center"
+        >
+          <h2 class="text-[60px] text-accent font-bold">DRINKS</h2>
+          <h3 class="text-[30px] text-secondary font-bold">
+            JOIN US FOR HAPPY HOUR
+          </h3>
+          <p class="text-[15px] lg:text-[25px] font-bold text-secondary">
+            3-6PM / 9-11PM • $1 OFF ALL BEAR | WEDNESDAYS 5-11PM • $2 SAKE
+            CARAFFES
+          </p>
+        </div>
+        <ul class="foodSelect flex gap-10 py-2">
+
+        <?php 
+
+          $args = array(
+            'post_type' => 'drink',
+            'posts_per_page' => -1,
+          );
+          $newQuery = new WP_Query($args);
+
+          ?>
+
+          <?php if($newQuery->have_posts()) : while($newQuery->have_posts()) : $newQuery->the_post(); ?>
+
+
+          <p class="drink__list active" id="tabs-<?php the_field('drink_id')?>"><?php the_title()?></p>
+          
+          <?php
+                endwhile;
+                else :
+                  echo "No Available Content Yet";
+                endif;
+                wp_reset_postdata();
+            ?>
+
+        </ul>
+        <div class="drinks__wrapper py-[3rem]">
+
+
+          <!-- CONTENTS -->
+          <div class="foodTabs active" id="tabs-<?php the_field('drink_id')?>-content">
             <div class="draft gap-2 px-5">
               <div class="drafts--categ text-center">
                 <h2 class="text-[30px] text-dark font-bold">DRAFT</h2>
@@ -511,7 +591,7 @@
               <div class="draftFoods">
                 <div class="flex justify-between">
                   <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-zxczxcSNAP</p>
+                    <p class="uppercase text-2xl font-bold">PEAR-asdasSNAP</p>
                     <p class="text-sm font-semibold">
                       boiled and salted soybean pods
                     </p>
@@ -521,65 +601,36 @@
                   </div>
                 </div>
               </div>
+
               <div class="draftFoods">
+
+                  
+
+
+
                 <div class="flex justify-between">
                   <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
+                    <p class="uppercase text-2xl font-bold"><?php echo get_sub_field('Name')?></p>
                     <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
+                      <?php echo get_sub_field('description')?>
                     </p>
                   </div>
                   <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
+                    <p class="text-2xl font-bold"><?php echo get_sub_field('price')?></p>
                   </div>
                 </div>
               </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
+
             </div>
+
+            <!-- BOTTLES -->
             <div class="bottles gap-2 px-5">
               <div class="bottles--categ text-center">
                 <h2 class="text-[30px] text-dark font-bold">
                   JAPANESE BOTTLES
                 </h2>
               </div>
+
               <div class="bottleFoods">
                 <div class="flex justify-between">
                   <div class="bottle--details">
@@ -591,523 +642,19 @@
                   </div>
                 </div>
               </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
-          <div class="foodTabs" id="tabs-3-content">
-            <div class="draft gap-2 px-5">
-              <div class="drafts--categ text-center">
-                <h2 class="text-[30px] text-dark font-bold">DRAFT</h2>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">
-                      PEAR-asdasdadadaSNAP
-                    </p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="bottles gap-2 px-5">
-              <div class="bottles--categ text-center">
-                <h2 class="text-[30px] text-dark font-bold">
-                  JAPANESE BOTTLES
-                </h2>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="foodTabs" id="tabs-4-content">
-            <div class="draft gap-2 px-5">
-              <div class="drafts--categ text-center">
-                <h2 class="text-[30px] text-dark font-bold">DRAFT</h2>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-zczczcSNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="draftFoods">
-                <div class="flex justify-between">
-                  <div class="drink--details">
-                    <p class="uppercase text-2xl font-bold">PEAR-SNAP</p>
-                    <p class="text-sm font-semibold">
-                      boiled and salted soybean pods
-                    </p>
-                  </div>
-                  <div class="drink--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="bottles gap-2 px-5">
-              <div class="bottles--categ text-center">
-                <h2 class="text-[30px] text-dark font-bold">
-                  JAPANESE BOTTLES
-                </h2>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottleFoods">
-                <div class="flex justify-between">
-                  <div class="bottle--details">
-                    <p class="uppercase text-2xl font-bold">SUPER DRY</p>
-                    <p class="text-sm font-semibold">BEER - Asahi</p>
-                  </div>
-                  <div class="bottle--Price">
-                    <p class="text-2xl font-bold">$5.00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
+
         </div>
       </div>
     </section>
+
+    <script>
+
+
+    </script>
 
 
 <?php get_footer()?>
