@@ -11,7 +11,7 @@
     />
     <?php wp_head()?>
   </head>
-  <body class="">
+  <body>
 
 
   <?php if(is_front_page()){ ?>

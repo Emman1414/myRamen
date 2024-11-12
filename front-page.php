@@ -107,6 +107,7 @@
                 </div>
                 <ul>
                   <?php the_field('menu_items')?>
+                  <p class="text-accent font-semibold font-economica text-[30px]"><?php the_field('veggies')?></p>
                 </ul>
                 <h3><?php the_field('menu_categ')?></h3>
               </div>
